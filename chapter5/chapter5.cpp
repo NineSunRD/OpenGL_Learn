@@ -194,7 +194,7 @@ int main(int argc, char ** argv) {
 	// 窗口设置
 	glutInitWindowSize(480, 320);      // 窗口尺寸
 	glutInitWindowPosition(100, 100);  // 窗口位置
-	glutCreateWindow("Tutorial 04");   // 窗口标题
+	glutCreateWindow("Tutorial 05");   // 窗口标题
 
 									   // 开始渲染
 	InitializeGlutCallbacks();
