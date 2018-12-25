@@ -8,7 +8,7 @@ GLuint VBO;
 /**
 * 渲染回调函数
 */
-static void RenderScenceCB() {
+static void RenderSceneCB() {
 	// 清空颜色缓存
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -65,7 +65,7 @@ int main(int argc, char ** argv) {
 	glutCreateWindow("Tutorial 02");   // 窗口标题
 
 									   // 开始渲染
-	glutDisplayFunc(RenderScenceCB);
+	glutDisplayFunc(RenderSceneCB);
 
 	// 检查GLEW是否就绪，必须要在GLUT初始化之后！
 	GLenum res = glewInit();
