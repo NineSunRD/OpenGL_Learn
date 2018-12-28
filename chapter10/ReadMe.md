@@ -1,0 +1,1 @@
+clang .\chapter10.cpp -o ..\bin\chapter10.exe -l ..\lib\freeglut.lib -l ..\lib\glew32.lib  -I ..\include\
