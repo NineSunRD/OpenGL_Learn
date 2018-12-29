@@ -32,16 +32,34 @@ public:
         m_rotateInfo.z = RotateZ;
     }
 
+    void SetPerspectiveProj(float FOV, float Width, float Height, float zNear, float zFar)
+    {
+        m_persProj.FOV    = FOV;
+        m_persProj.Width  = Width;
+        m_persProj.Height = Height;
+        m_persProj.zNear  = zNear;
+        m_persProj.zFar   = zFar;
+    }
+
     const Matrix4f* GetTrans();
 
 private:
     void InitScaleTransform(Matrix4f& m) const;
     void InitRotateTransform(Matrix4f& m) const;
     void InitTranslationTransform(Matrix4f& m) const;
+    void InitPerspectiveProj(Matrix4f& m) const;
 
     Vector3f m_scale;
     Vector3f m_worldPos;
     Vector3f m_rotateInfo;
+
+    struct {
+        float FOV;
+        float Width;
+        float Height;
+        float zNear;
+        float zFar;
+    } m_persProj;
 
     Matrix4f m_transformation;
 };
