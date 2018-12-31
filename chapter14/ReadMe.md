@@ -1,0 +1,1 @@
+clang .\chapter14.cpp ..\include\pipeline.cpp ..\include\Camera.cpp -o ..\bin\chapter14.exe -l ..\lib\freeglut.lib -l ..\lib\glew32.lib  -I ..\include\

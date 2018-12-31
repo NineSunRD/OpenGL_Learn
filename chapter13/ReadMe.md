@@ -1,0 +1,1 @@
+clang .\chapter13.cpp ..\include\pipeline.cpp -o ..\bin\chapter13.exe -l ..\lib\freeglut.lib -l ..\lib\glew32.lib  -I ..\include\

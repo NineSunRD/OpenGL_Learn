@@ -35,11 +35,11 @@ void Pipeline::InitRotateTransform(Matrix4f& m) const
     m = rz * ry * rx;
 }
 
-void Pipeline::InitTranslationTransform(Matrix4f& m) const
+void Pipeline::InitTranslationTransform(Matrix4f& m, float x, float y, float z) const
 {
-    m.m[0][0] = 1.0f; m.m[0][1] = 0.0f; m.m[0][2] = 0.0f; m.m[0][3] = m_worldPos.x;
-    m.m[1][0] = 0.0f; m.m[1][1] = 1.0f; m.m[1][2] = 0.0f; m.m[1][3] = m_worldPos.y;
-    m.m[2][0] = 0.0f; m.m[2][1] = 0.0f; m.m[2][2] = 1.0f; m.m[2][3] = m_worldPos.z;
+    m.m[0][0] = 1.0f; m.m[0][1] = 0.0f; m.m[0][2] = 0.0f; m.m[0][3] = x;
+    m.m[1][0] = 0.0f; m.m[1][1] = 1.0f; m.m[1][2] = 0.0f; m.m[1][3] = y;
+    m.m[2][0] = 0.0f; m.m[2][1] = 0.0f; m.m[2][2] = 1.0f; m.m[2][3] = z;
     m.m[3][0] = 0.0f; m.m[3][1] = 0.0f; m.m[3][2] = 0.0f; m.m[3][3] = 1.0f;
 }
 
@@ -72,15 +72,33 @@ void Pipeline::InitPerspectiveProj(Matrix4f& m) const
     m.m[3][3] = 0.0f;
 }
 
+void Pipeline::InitCameraTransform(Matrix4f& m) const
+{
+    Vector3f N = m_camera.Target;
+    N.Normalize();
+    Vector3f U = m_camera.Up;
+    U.Normalize();
+    U = U.Cross(N);
+    Vector3f V = N.Cross(U);
+
+    m.m[0][0] = U.x; m.m[0][1] = U.y; m.m[0][2] = U.z; m.m[0][3] = 0.0f;
+    m.m[1][0] = V.x; m.m[1][1] = V.y; m.m[1][2] = V.z; m.m[1][3] = 0.0f;
+    m.m[2][0] = N.x; m.m[2][1] = N.y; m.m[2][2] = N.z; m.m[2][3] = 0.0f;
+    m.m[3][0] = 0.0f; m.m[3][1] = 0.0f; m.m[3][2] = 0.0f; m.m[3][3] = 1.0f;
+}
+
+
 const Matrix4f* Pipeline::GetTrans()
 {
-    Matrix4f ScaleTrans, RotateTrans, TranslationTrans, PersProjTrans;
+    Matrix4f ScaleTrans, RotateTrans, TranslationTrans, PersProjTrans, CameraTranslationTrans, CameraRotateTrans;
 
     InitScaleTransform(ScaleTrans);
     InitRotateTransform(RotateTrans);
-    InitTranslationTransform(TranslationTrans);
+    InitTranslationTransform(TranslationTrans, m_worldPos.x, m_worldPos.y, m_worldPos.z);
+    InitTranslationTransform(CameraTranslationTrans, -m_camera.Pos.x, -m_camera.Pos.y, -m_camera.Pos.z);
+    InitCameraTransform(CameraRotateTrans);
     InitPerspectiveProj(PersProjTrans);
 
-    m_transformation = PersProjTrans * TranslationTrans * RotateTrans * ScaleTrans;
+    m_transformation = PersProjTrans  * CameraRotateTrans * CameraTranslationTrans * TranslationTrans * RotateTrans * ScaleTrans;
     return &m_transformation;
 }

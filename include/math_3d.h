@@ -24,7 +24,72 @@ struct Vector3f
 		y = _y;
 		z = _z;
 	}
+
+    Vector3f& operator+=(const Vector3f& r)
+    {
+        x += r.x;
+        y += r.y;
+        z += r.z;
+
+        return *this;
+    }
+
+    Vector3f& operator-=(const Vector3f& r)
+    {
+        x -= r.x;
+        y -= r.y;
+        z -= r.z;
+
+        return *this;
+    }
+
+    Vector3f& operator*=(const float f)
+    {
+        x *= f;
+        y *= f;
+        z *= f;
+
+        return *this;
+    }
+
+    Vector3f Cross(const Vector3f& v) const 
+    {
+        const float _x = y * v.z - z * v.y;
+        const float _y = z * v.x - x * v.z;
+        const float _z = x * v.y - y * v.x;
+
+        return Vector3f(_x, _y, _z);
+    }
+
+    Vector3f& Normalize()
+    {
+        const float Length = sqrtf(x * x + y * y + z * z);
+
+        x /= Length;
+        y /= Length;
+        z /= Length;
+
+        return *this;
+    }
 };
+
+inline Vector3f operator*(const Vector3f& l, float f)
+{
+    Vector3f Ret(l.x * f,
+                 l.y * f,
+                 l.z * f);
+
+    return Ret;
+}
+
+inline Vector3f operator-(const Vector3f& l, const Vector3f& r)
+{
+    Vector3f Ret(l.x - r.x,
+                 l.y - r.y,
+                 l.z - r.z);
+
+    return Ret;
+}
 
 class Matrix4f
 {
