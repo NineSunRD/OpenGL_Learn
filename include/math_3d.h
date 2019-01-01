@@ -71,6 +71,9 @@ struct Vector3f
 
         return *this;
     }
+
+    void Rotate(float Angle, const Vector3f& Axis);
+
 };
 
 inline Vector3f operator*(const Vector3f& l, float f)
@@ -125,5 +128,26 @@ public:
         return Ret;
     }
 };
+
+struct Vector2i
+{
+    int x;
+    int y;
+};
+
+struct Quaternion
+{
+    float x, y, z, w;
+
+    Quaternion(float _x, float _y, float _z, float _w);
+
+    void Normalize();
+
+    Quaternion Conjugate();  
+ };
+
+Quaternion operator*(const Quaternion& l, const Quaternion& r);
+
+Quaternion operator*(const Quaternion& q, const Vector3f& v);
 
 #endif	/* MATH_3D_H */
