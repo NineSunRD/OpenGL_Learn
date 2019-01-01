@@ -1,0 +1,1 @@
+clang .\chapter16.cpp .\Camera.cpp .\texture.cpp ..\include\pipeline.cpp ..\include\math_3d.cpp -o ..\bin\chapter16.exe -l ..\lib\freeglut.lib -l ..\lib\glew32.lib -I ..\include\ -I E:\ImageMagick-7.0.8-Q16\include  -l ..\lib\CORE_RL_Magick++_.lib
