@@ -8,6 +8,28 @@
 #define ToRadian(x) ((x) * M_PI / 180.0f)
 #define ToDegree(x) ((x) * 180.0f / M_PI)
 
+struct Vector2i
+{
+    int x;
+    int y;
+};
+
+struct Vector2f
+{
+	float x;
+	float y;
+
+    Vector2f(float _x, float _y)
+	{
+		x = _x;
+		y = _y;
+	}
+
+    Vector2f()
+	{
+	}
+};
+
 struct Vector3f
 {
 	float x;
@@ -127,28 +149,12 @@ public:
 
         return Ret;
     }
-};
-
-struct Vector2i
-{
-    int x;
-    int y;
-};
-
-struct Vector2f
-{
-	float x;
-	float y;
-
-    Vector2f(float _x, float _y)
-	{
-		x = _x;
-		y = _y;
-	}
-
-    Vector2f()
-	{
-	}
+    
+    void InitScaleTransform(float ScaleX, float ScaleY, float ScaleZ);
+    void InitRotateTransform(float RotateX, float RotateY, float RotateZ);
+    void InitTranslationTransform(float x, float y, float z);
+    void InitCameraTransform(const Vector3f& Target, const Vector3f& Up);
+    void InitPersProjTransform(float FOV, float Width, float Height, float zNear, float zFar);
 };
 
 struct Quaternion
