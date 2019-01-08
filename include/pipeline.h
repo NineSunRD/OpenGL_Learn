@@ -49,6 +49,7 @@ public:
     }
 
     const Matrix4f* GetTrans();
+    const Matrix4f* GetWorldTrans();
 
 private:
     Vector3f m_scale;
@@ -63,11 +64,12 @@ private:
         float zFar;
     } m_persProj;
 
-    struct { 
-        Vector3f Pos; 
+    struct {
+        Vector3f Pos;
         Vector3f Target;
         Vector3f Up;
     } m_camera;
 
     Matrix4f m_transformation;
+    Matrix4f m_WorldTransformation;
 };
