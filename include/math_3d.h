@@ -74,7 +74,7 @@ struct Vector3f
         return *this;
     }
 
-    Vector3f Cross(const Vector3f& v) const 
+    Vector3f Cross(const Vector3f& v) const
     {
         const float _x = y * v.z - z * v.y;
         const float _y = z * v.x - x * v.z;
@@ -122,7 +122,7 @@ public:
     float m[4][4];
 
     Matrix4f()
-    {        
+    {
     }
 
 
@@ -149,7 +149,7 @@ public:
 
         return Ret;
     }
-    
+
     void InitScaleTransform(float ScaleX, float ScaleY, float ScaleZ);
     void InitRotateTransform(float RotateX, float RotateY, float RotateZ);
     void InitTranslationTransform(float x, float y, float z);
@@ -165,7 +165,7 @@ struct Quaternion
 
     void Normalize();
 
-    Quaternion Conjugate();  
+    Quaternion Conjugate();
  };
 
 Quaternion operator*(const Quaternion& l, const Quaternion& r);
@@ -177,6 +177,7 @@ struct Vertex
 {
     Vector3f m_pos;
     Vector2f m_tex;
+    Vector3f m_normal;
 
     Vertex() {}
 
@@ -184,6 +185,7 @@ struct Vertex
     {
         m_pos = pos;
         m_tex = tex;
+        m_normal = Vector3f(0.0f, 0.0f, 0.0f);
     }
 };
 
