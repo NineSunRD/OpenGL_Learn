@@ -50,7 +50,7 @@ public:
 
         m_pEffect->SetTextureUnit(0);
 
-        m_pTexture = new Texture(GL_TEXTURE_2D, "../Content/test.png");
+        m_pTexture = new Texture(GL_TEXTURE_2D, "../content/test.png");
 
         if (!m_pTexture->Load()) {
             return false;
