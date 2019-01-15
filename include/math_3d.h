@@ -187,6 +187,13 @@ struct Vertex
         m_tex = tex;
         m_normal = Vector3f(0.0f, 0.0f, 0.0f);
     }
+
+    Vertex(const Vector3f& pos, const Vector2f& tex, const Vector3f& normal)
+    {
+        m_pos    = pos;
+        m_tex    = tex;
+        m_normal = normal;
+    }
 };
 
 #endif	/* MATH_3D_H */

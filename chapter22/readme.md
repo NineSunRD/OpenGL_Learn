@@ -1,0 +1,1 @@
+clang .\*.cpp ..\include\*.cpp -o ..\bin\chapter22.exe -l ..\lib\*.lib -I ..\include\ -I E:\ImageMagick-7.0.8-Q16\include -I E:\Assimp\include
